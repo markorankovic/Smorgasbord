@@ -1,16 +1,14 @@
 import SpriteKit
-
-public struct Smorgasbord {
-    public var text = "Hello, World!"
-    
-    public init() { }
-}
-
+import GameplayKit
 
 extension Sequence {
     
     public func filter<T>(_ type: T.Type) -> [T] {
         return compactMap{ $0 as? T }
+    }
+    
+    func first<T>(_: T.Type) -> T? {
+        return first{ $0 is T } as? T
     }
     
 }
@@ -26,5 +24,12 @@ extension CGPoint {
     }
     
 }
+
+extension GKScene {
+    func each<T: GKComponent>(_: T.Type) -> [T] {
+        return entities.compactMap{ $0.components.first(T.self) }
+    }
+}
+
 
 
