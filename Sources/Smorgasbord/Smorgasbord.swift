@@ -26,7 +26,7 @@ extension CGPoint {
 }
 
 extension GKScene {
-    func each<T: GKComponent>(_: T.Type) -> [T] {
+    public func each<T: GKComponent>(_: T.Type) -> [T] {
         return entities.compactMap{ $0.components.first(T.self) }
     }
 }
